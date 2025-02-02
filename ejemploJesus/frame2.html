@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas Recibidas</title>
+</head>
+<body>
+
+    <h2>📥 Última Nota Recibida</h2>
+    <p id="mensaje">Esperando nota...</p>
+
+    <!--windows.addEventListener es un método que se utiliza para añadir un event listener a un objeto (en este caso sería el objeto window) que representaría nuestro iframe. Message es el tipo de evento que pretendemos 'escuchar', es decir, cuando nosotros pulsamos el boton de enviar en el iframe1, ejecutamos la función enviarNota() que será la que está esperando el event listener del iframe2 mediante el método addEventListener con su parámetro 'message'-->
+    <script>
+
+        /*function(mensaje) es la función callback que se ejecuta cuando el evento message es recibido. Le pasamos el parámetro mensaje que contiene la información del mensaje recibido. De lo que se trata es que el evento que escucha, cuando recibe el evento message, ejecutas la función cuyo parámetro es el mensaje en sí que deseamos compartir del iframe1 al iframe2*/
+
+        window.addEventListener('message', function(mensaje) {
+
+            /*.textContent es el atributo que permite leer o establecer el contenido de texto de un elemento. Le asignamos mensaje.data que es el objeto que tiene almacenada la información del mensaje en la propiedad data. Se la pasamos a la función callback.*/
+            
+            document.getElementById('mensaje').textContent = mensaje.data;
+        });
+    </script>
+
+</body>
+</html>

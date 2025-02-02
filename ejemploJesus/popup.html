@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota Guardada</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>📌 Última Nota Guardada</h2>
+    <p id="ultimaNota">Cargando...</p>
+
+    <!--El siguiente código obtiene un parámetro llamado nota de la URL de la página actual y lo muestra en un elemento HTML con el ID ultimaNota. Si no se encuentra ese parámetro, se muestra el texto "No hay notas aún".-->
+
+    <script>
+        /*window.location.search es una propiedad que obtiene la parte de la URL que viene después del signo de interrogación. new URLSearchParams es una interfaz de JavaScript que convierte a todo lo que sigue al signo de interrogación en un objeto que se pueda manipular. Lo guardamos en la constante params*/
+
+        const params = new URLSearchParams(window.location.search);
+
+        /*params.get("nota") es una función que obtiene el valor del parámetro nota que se encuentra en la URL y la almacena en la variable nota*/
+
+        let nota = params.get("nota") || "No hay notas aún.";
+        
+        /*Esta última línea de código obtiene el elemento del DOM con el ID ultimaNota. Luego cambia el contenido del texto por el que tenemos en la variable nota (que será el que muestre en la ventana emergente o popup)*/
+        
+        document.getElementById("ultimaNota").textContent = nota;
+    </script>
+
+</body>
+</html>

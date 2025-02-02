@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escribir Nota</title>
+</head>
+<body>
+
+    <h2>📝 Escribe una Nota</h2>
+
+    <!-- establecemos un textarea donde escribiremos la nota que vamos a procesar -->
+    
+    <textarea id="nota" placeholder="Escribe algo..." rows="25" cols="110"></textarea><br>
+
+    <!--con el botón damos la instrucción de enviar la nota al otro iframe. Hacemos una llamada a la función enviarNota() que es la que procesa el mensaje-->
+
+    <button onclick="enviarNota()">📨 Enviar</button>
+
+    <!-- este es el código de JavaScript que permite almacenar en el localStorage las variables nota, fecha y mensaje.-->
+
+    <script>
+        function enviarNota() {
+            let nota = document.getElementById("nota").value;
+
+            /*La variable nota almacena el valor del textarea con el id="nota", es decir, lo que escribamos en el textarea será la string que se almacenará en la variable nota. Esto lo hacemos mediante el método document.getElementById()*/
+            
+            let fecha = new Date().toLocaleString();
+
+            /*Almacenamos la fecha (convertida a string) en la varible fecha. Usamos el método constructor new Date() para crear un objeto Date. El método .toLocaleString lo aplicamos sobre el objeto Date convirtiendo la fecha y hora en una cadena de texto según la configuración regional de fecha-hora*/
+
+            let mensaje = `${nota} (📅 ${fecha})`;
+
+            /* Las variables nota y fecha se concatenan en una nueva llamada mensaje. Esta variable será la que se envíe al iframe2*/
+            
+            localStorage.setItem("ultimaNota", mensaje); 
+
+            /* Línea de almacenamiento en el localStorage. Con setItem y los parámetros guardamos la última nota en localStorage mediante el sistema de clave-valor. Es decir la clave en este caso sería la primera parte del parámetro "ultimaNota" mientras que el valor es la variable mensaje que hemos tratado con anterioridad.*/
+            
+            window.parent.frames['marco2'].postMessage(mensaje, '*');
+
+            /* Explicación de esta línea. window.parent hace referencia a la ventana actual en la que se está ejecutando el scritp. frames[marco2] selecciona el iframe cuyo name=marco2. Lo tenemos en index.html. postMessage es un método que nos permite enviar mensajes entre ventanas o iframes. mensaje es el contenido que se envía (la variable que hemos definido un poco más arriba). El asterisco indica que el mensaje se enviará a cualquier origen (esto puede dar riesgo de seguridad).Se recomienda cambiar '*' por la URL específica del destino*/
+
+        }
+    </script>
+    <!--Esto es un comentario para hacer un commit en GitHub y ver si funciona-->
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas Interactivas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>📜 Notas Interactivas</h1>
+
+    <!--Con este botón ejecutamos la función abrirVentana() que la tenemos en un archivo aparte llamado script.js-->
+
+    <button onclick="abrirVentana()">📌 Ver Última Nota</button>
+
+    <!--Estos son los iframe contenidos en el body de la página principal index.html. Tenemos dos iframes: marco1 y marco2. Estos name son importantes a la hora de enviar los mensajes desde frame1.html y recibirlos en frame2.html-->
+
+    <div class="contenedor-marcos">
+        <iframe src="frame1.html" name="marco1"></iframe>
+        <iframe src="frame2.html" name="marco2"></iframe>
+    </div>
+    
+    <!--Este es el JavaScript que contiene la función abrirVentana(). Está en un archivo aparte para mejor legibilidad-->
+
+    <script src="script.js"></script> 
+</body>
+
+</html>
